@@ -1,31 +1,39 @@
 {% extends "base.html" %}
 
-
 {% block xyz %}
 
-<div style="padding: 41px;
-padding-left: 141px;
-padding-right: 135px;
-margin-top: 16px;">
+<div
+  style="padding: 41px; padding-left: 141px; padding-right: 135px; margin-top: 16px;">
+  <form action="savedata" method="post">
     <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-      </div>
-      <div class="mb-3">
-        <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-      </div>
+      <label for="exampleFormControlInput1" class="form-label">Name</label>
+      <input type="text" class="form-control" name="name" id="exampleFormControlInput1"
+        placeholder="Enter your Name">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Phone Number</label>
+      <input type="number" class="form-control" name="phone" id="exampleFormControlInput1"
+        placeholder="Enter Phone Number">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Email Id</label>
+      <input type="email" class="form-control" name="email" id="exampleFormControlInput1"
+        placeholder="Enter your Email Id">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+      <textarea class="form-control" name="msg" id="exampleFormControlTextarea1" rows="3"
+        placeholder="Enter Your Message"></textarea>
+    </div>
 
-      <div style="    display: flex;
+    <div style="    display: flex;
       justify-content: center;">
-        <button type="button" class="btn btn-success">Success</button>
+      <button type="submit" class="btn btn-success">Submit</button>
 
-      </div>
+    </div>
+  </form>
 </div>
 
-
-
 {% endblock xyz %}
-
 
 {% block title %}Contact{% endblock title %}

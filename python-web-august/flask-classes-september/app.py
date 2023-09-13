@@ -36,6 +36,11 @@ def contact1():
 def services():
     return render_template("services.html")
 
+
+@app.route("/savedata", methods = ["post", ])
+def save():
+    return "save data"
+
 if __name__ == "__main__":
     app.run(debug = True)
 
