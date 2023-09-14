@@ -1,4 +1,19 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect
+import mysql.connector
+
+
+conn = mysql.connector.connect(host = "localhost", user = "root", password = "1234", database = "test")
+
+curser = conn.cursor()
+
+# curser.execute("create table tblxyz(Name varchar(30), Phone_Number int, Email varchar(30), Message varchar(12));")
+
+
+
+
+
+
+
 app = Flask(__name__)
 
 @app.route("/car")
@@ -39,7 +54,18 @@ def services():
 
 @app.route("/savedata", methods = ["post", ])
 def save():
-    return "save data"
+    if request.method == "POST":
+        usernmae = request.form.get("name")
+        phone = request.form.get("phone")
+        email = request.form.get("email")
+        dec = request.form.get("msg")
+
+        curser.execute(f"insert into tblxyz values('{usernmae}', {phone}, '{email}', '{dec}')")
+        conn.commit()
+
+    return redirect('contact-us')
+        
+    # return "save data"
 
 if __name__ == "__main__":
     app.run(debug = True)
