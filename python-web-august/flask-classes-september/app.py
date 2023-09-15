@@ -37,7 +37,9 @@ def showfome():
 
 @app.route("/")
 def home1():
-    return render_template("home.html")
+    curser.execute("select * from tblxyz;")
+    zx = curser.fetchall()
+    return render_template("home.html", data = zx)
 
 @app.route("/about-us")
 def about1():
@@ -68,7 +70,7 @@ def save():
     # return "save data"
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug = True, port=7000)
 
 
 

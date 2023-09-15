@@ -3,9 +3,44 @@
 
 {% block xyz %}
 
-<h1> home </h1>
+<div style="padding: 49px;">
+
+    <div class="row">
+        {% for i in data %}
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card" style="margin-bottom: 30px;">
+            <div class="card-body" style="background-color: #00f6ff1f;">
+                <div class="row">
+                    <div class="col">
+                        <div>
+                            <p><strong>Name : </strong> {{i[0]}}</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <p><strong>Email -Id : </strong> {{i[2]}}</p>
+                    </div>
+                </div>
+           
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Phone Number : </strong> {{i[1]}}</p>
+                    </div>    
+                </div>
+
+              <p class="card-text">{{i[3]}}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+      </div>
+
+</div>
+
+
+
+
+
 {% endblock xyz %}
-
-
 
 {% block title %}Home{% endblock title %}
