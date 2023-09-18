@@ -69,6 +69,35 @@ def save():
         
     # return "save data"
 
+
+
+@app.route("/delete/<name>", methods = ["post",])
+def deletethis(name):
+    curser.execute(f"delete from tblxyz where Name = '{name}'")
+    return redirect("/")
+
+
+@app.route("/update/<name>", methods = ["post", ])
+def updateshowthis(name):
+    curser.execute(f"select * from tblxyz where Name = '{name}';")
+    data = curser.fetchall()
+    return render_template("updatedata.html", mydata = data)
+
+@app.route("/update-this/<name>", methods = ["post", ])
+def updatethis(name):
+    if request.method == "POST":
+        usernmae = request.form.get("name")
+        phone = request.form.get("phone")
+        email = request.form.get("email")
+        dec = request.form.get("msg")
+
+        curser.execute(f"update tblxyz set Name = '{usernmae}',Email='{email}',Message='{dec}' where Name = '{name}'; ")
+        conn.commit()    
+    return f"the name is {name}"
+
+
+
+
 if __name__ == "__main__":
     app.run(debug = True, port=7000)
 

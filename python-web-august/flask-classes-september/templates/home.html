@@ -28,7 +28,17 @@
                 </div>
 
               <p class="card-text">{{i[3]}}</p>
+              <div style="display: flex; justify-content: space-around;">                
+                <form action="/update/{{i[0]}}" method="post">
+                    <button type="submit">Update</button>
+                </form>
+
+                <form action="/delete/{{i[0]}}" method="post">
+                    <button type="submit">Delete</button>
+                </form>
             </div>
+            </div>
+            
           </div>
         </div>
         {% endfor %}
