@@ -26,7 +26,14 @@
                         <p><strong>Phone Number : </strong> {{i[1]}}</p>
                     </div>    
                 </div>
-
+                <div class="row">
+                    <div class="col">
+                        <p><strong>Image : </strong> 
+                        <img src = "/{{i[4]}}">
+                        </p>
+                    </div>    
+                </div>
+                <!-- <img src = "/static/images/car.jpg"> -->
               <p class="card-text">{{i[3]}}</p>
               <div style="display: flex; justify-content: space-around;">                
                 <form action="/update/{{i[0]}}" method="post">

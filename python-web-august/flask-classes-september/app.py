@@ -1,18 +1,12 @@
 from flask import Flask, render_template, request, redirect
 import mysql.connector
-
+import os
 
 conn = mysql.connector.connect(host = "localhost", user = "root", password = "1234", database = "test")
 
 curser = conn.cursor()
 
 # curser.execute("create table tblxyz(Name varchar(30), Phone_Number int, Email varchar(30), Message varchar(12));")
-
-
-
-
-
-
 
 app = Flask(__name__)
 
@@ -57,12 +51,17 @@ def services():
 @app.route("/savedata", methods = ["post", ])
 def save():
     if request.method == "POST":
+        print("ehyyyyyyyyyyyyyy")
         usernmae = request.form.get("name")
         phone = request.form.get("phone")
         email = request.form.get("email")
         dec = request.form.get("msg")
+        myimg = request.files.get("image")
+        if myimg:
+            myimg.save(os.path.join("static/images/", myimg.filename))
+            img = os.path.join("static/images/", myimg.filename)
 
-        curser.execute(f"insert into tblxyz values('{usernmae}', {phone}, '{email}', '{dec}')")
+        curser.execute(f"insert into tblxyz values('{usernmae}', {phone}, '{email}', '{dec}', '{img}')")
         conn.commit()
 
     return redirect('contact-us')
@@ -82,7 +81,7 @@ def updateshowthis(name):
     curser.execute(f"select * from tblxyz where Name = '{name}';")
     data = curser.fetchall()
     return render_template("updatedata.html", mydata = data)
-
+ 
 @app.route("/update-this/<name>", methods = ["post", ])
 def updatethis(name):
     if request.method == "POST":
@@ -91,8 +90,9 @@ def updatethis(name):
         email = request.form.get("email")
         dec = request.form.get("msg")
 
-        curser.execute(f"update tblxyz set Name = '{usernmae}',Email='{email}',Message='{dec}' where Name = '{name}'; ")
-        conn.commit()    
+        curser.execute(f"update tblxyz set Name = '{usernmae}',Email='{email}',Message='{dec}' where Name = '{name}' ; ")
+        conn.commit()   
+        return redirect("/") 
     return f"the name is {name}"
 
 
