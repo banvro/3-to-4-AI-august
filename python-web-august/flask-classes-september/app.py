@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 import mysql.connector
 import os
+
 
 conn = mysql.connector.connect(host = "localhost", user = "root", password = "1234", database = "test")
 
@@ -9,6 +10,8 @@ curser = conn.cursor()
 # curser.execute("create table tblxyz(Name varchar(30), Phone_Number int, Email varchar(30), Message varchar(12));")
 
 app = Flask(__name__)
+app.secret_key = "this sdkndfs fsd fhoshdfpsfsldfsnklf"
+
 
 @app.route("/car")
 def home():
@@ -31,8 +34,14 @@ def showfome():
 
 @app.route("/")
 def home1():
-    curser.execute("select * from tblxyz;")
-    zx = curser.fetchall()
+    qwuey = request.args.get("query")
+    # if request.method == "GET":
+    if qwuey:
+        curser.execute(f"select * from tblxyz where Name = '{qwuey}' or Phone_Number = '{qwuey}'")
+        zx = curser.fetchall()
+    else:
+        curser.execute("select * from tblxyz;")
+        zx = curser.fetchall()
     return render_template("home.html", data = zx)
 
 @app.route("/about-us")
@@ -63,6 +72,7 @@ def save():
 
         curser.execute(f"insert into tblxyz values('{usernmae}', {phone}, '{email}', '{dec}', '{img}')")
         conn.commit()
+        flash("Your Data Saved Sucessfully...!")
 
     return redirect('contact-us')
         

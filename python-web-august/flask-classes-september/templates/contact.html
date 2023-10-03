@@ -2,6 +2,21 @@
 
 {% block xyz %}
  
+
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+    <div class="alert alert-warning alert-dismissible fade show" style="background-color: #60c760;" role="alert">
+      <strong>Data Saved!</strong> {{ message }}.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 <div
   style="padding: 41px; padding-left: 141px; padding-right: 135px; margin-top: 16px;">
   <div id="liveAlertPlaceholder"></div>
@@ -30,8 +45,7 @@
 
     <div class="mb-3">
       <label for="exampleFormControlInput1" class="form-label">Upload Image</label>
-      <input type="file" class="form-control" name="image" 
-        placeholder="Enter your Email Id" required>
+      <input type="file" class="form-control" name="image" >
     </div>
 
     <div style="    display: flex;
