@@ -1,0 +1,29 @@
+{% extends "auth/base.html" %}
+
+{% block xyz %}
+
+<form action="login-page" method="post">
+    {% csrf_token %}
+    <div style="padding: 3%; padding-left: 18%;padding-right: 18%;">
+        <h1 style="text-align: center;margin-bottom: 31px;
+        color: green;">Login Here</h1>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="username" id="floatingInput">
+            <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" name="password"
+                id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <div style="
+            margin-top: 19px;
+            display: flex;
+            justify-content: center;">
+            <button type="submit" class="btn btn-success">Submit Data</button>
+        </div>
+    </div>
+   </form>
+
+{% endblock xyz %}
