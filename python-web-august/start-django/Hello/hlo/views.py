@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+
+
 # Create your views here.
 def home(request):
     return render(request, "basic/home.html")
@@ -29,3 +32,21 @@ def savedata(request):
         userinfo.save()
         return redirect("signup")
     return HttpResponse("data saved")
+
+
+def loginpage(request):
+    if request.method == "POST":
+        x = request.POST.get("username")
+        y = request.POST.get("password")
+
+        check = authenticate(username = x, password = y)
+
+        if check is not None:
+            login(request, check)
+
+    return render(request, "auth/login.html")
+
+
+def logoutthis(request):
+    logout(request)
+    return redirect("login")
