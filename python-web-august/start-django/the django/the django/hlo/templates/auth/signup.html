@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block xyz %}
+       <form action="savedata" method="post">
+        {% csrf_token %}
+        <div style="padding: 3%; padding-left: 18%;padding-right: 18%;">
+            <h1 style="text-align: center;margin-bottom: 31px;
+            color: rgb(71, 179, 32);">Signup Here</h1>
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" name="username" id="floatingInput">
+                <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="fname" class="form-control" id="floatingInput">
+                <label for="floatingInput">First Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="lname" class="form-control" id="floatingInput">
+                <label for="floatingInput">Last Name</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="email" name="email" class="form-control" id="floatingInput">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" name="password"
+                    id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+
+            <div style="
+                margin-top: 19px;
+                display: flex;
+                justify-content: center;">
+                <button type="submit" class="btn btn-success">Submit Data</button>
+            </div>
+        </div>
+       </form>
+
+{% endblock xyz %}
