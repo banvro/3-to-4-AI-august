@@ -16,4 +16,10 @@ urlpatterns = [
     path("contactus", views.contactus),
     path("showdata", views.showdata, name = "showdata"),
 
+    path("updatedata/<int:x>", views.updatedata, name = "updatedata"),
+
+    path("updatenow/<int:x>", views.updatenow, name = "updatenow"),
+
+    path("delete/<int:x>", views.detethis),
+
 ]

@@ -78,3 +78,33 @@ def contactus(request):
 def showdata(request):
     data = ContactU.objects.all()
     return render(request, "basic/showdata.html", {"mydata" : data})
+
+
+
+def updatedata(request, x):
+    data = ContactU.objects.get(id = x)
+    return render(request, "basic/updatedata.html", {"mydata" : data})
+
+
+def updatenow(request, x):
+    x = ContactU.objects.get(id = x)
+    if request.method == "POST":
+        name = request.POST.get("name")
+        number = request.POST.get("number")
+        email = request.POST.get("email")
+        msg = request.POST.get("msg")
+
+        x.Name = name
+        x.Email = email
+        x.phone_number = number
+        x.message = msg 
+        x.save()
+        
+        return redirect("showdata")
+    
+    return render(request, "basic/updatedata.html")
+
+def detethis(request, x):
+    x = ContactU.objects.get(id = x)
+    x.delete()
+    return redirect("showdata")
