@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from hlo.models import ContactU
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def home(request):
@@ -58,7 +59,7 @@ def contact(request):
          password = request.POST.get("Password")
 
          
-        
+@login_required(login_url="/login-page")
 def contactus(request):
     if request.method == "POST":
         name = request.POST.get("name")
