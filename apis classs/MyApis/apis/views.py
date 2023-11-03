@@ -12,3 +12,14 @@ def myfirstapi(request):
     serlizer = mydataserlizer(data, many = True)
     return Response({"mesage" : "This is my first api",
                      "Data" : serlizer.data})
+
+@api_view(["POST"])
+def saveinfo(request):
+    xyz = mydataserlizer(data = request.data)
+    if xyz.is_valid():
+        xyz.save()
+
+    return Response({
+        "message" : "Data Save sucessfully",
+        "data" : xyz.data
+    })

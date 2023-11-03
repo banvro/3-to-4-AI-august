@@ -5,3 +5,4 @@ class mydataserlizer(serializers.ModelSerializer):
     class Meta: 
         model = helobase
         fields = '__all__'
+        # fields = ["id", "title"]
