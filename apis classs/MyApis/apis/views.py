@@ -23,3 +23,27 @@ def saveinfo(request):
         "message" : "Data Save sucessfully",
         "data" : xyz.data
     })
+
+
+
+
+@api_view(["PATCH"])
+def updatethis(request, x):
+    obj = helobase.objects.get(id = x)
+    xyz = mydataserlizer(obj, data = request.data, partial = True)
+    if xyz.is_valid():
+        xyz.save()
+
+    return Response({
+        "message" : "data Updateed sucessfully",
+        "data" : xyz.data
+    })
+
+@api_view(["POST"])
+def deletethis(request, x):
+    obj = helobase.objects.get(id = x)
+    obj.delete()
+
+    return Response({
+        "message" : "data Deleted sucessfully"
+    })
