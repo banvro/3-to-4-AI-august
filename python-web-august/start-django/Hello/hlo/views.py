@@ -2,15 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-
+from requests import session
 
 # Create your views here.
 def home(request):
+    request.session['my_car'] = 'mini'
     return render(request, "basic/home.html")
     # return HttpResponse("This is my home function..")
 
 def contact(request):
-    return HttpResponse("this is contact us.")
+    zx = request.session["my_car"]
+    return HttpResponse(f"{zx}")
     # return "tis is ok"
 
 def aboutus(request):

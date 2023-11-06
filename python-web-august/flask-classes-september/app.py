@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, flash, session, make_response
 import mysql.connector
 import os
 
@@ -15,14 +15,20 @@ app.secret_key = "this sdkndfs fsd fhoshdfpsfsldfsnklf"
 
 @app.route("/car")
 def home():
+    # session["name"] = "kriss"
+    res = make_response("cookies is set")
+    res.set_cookie("useris", "120")
     return "welcom to my flask app..."
 
-@app.route("/car/<int:id>")
-def about(id):
+@app.route("/carr")
+def about():
+    # id = session.get("name")
+    id=request.cookies.get("useris")
     return f"this is my about page...{id}"
 
 @app.route("/show")
 def showpage():
+    
     return render_template("home.html")
 
 

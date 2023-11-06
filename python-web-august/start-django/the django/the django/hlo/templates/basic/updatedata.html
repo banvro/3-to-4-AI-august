@@ -152,13 +152,19 @@
         </div> {% endcomment %}
 
         {{mydata}}
-        <form action="/updatenow/{{mydata.id}}" method="post">
+        <form action="/updatenow/{{mydata.id}}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row input-container">
                 <div class="col-xs-12">
                     <div class="styled-input wide">
                         <input type="text" name="name" value = "{{mydata.Name}}" required />
                         <label>Name</label>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="styled-input wide">
+                        <input type="file" name="img" value = "{{mydata.image}}" />
+                        <label>Update</label>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">

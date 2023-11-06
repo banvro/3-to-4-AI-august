@@ -96,11 +96,15 @@ def updatenow(request, x):
         number = request.POST.get("number")
         email = request.POST.get("email")
         msg = request.POST.get("msg")
-
+        img = request.FILES.get("img")
         x.Name = name
         x.Email = email
         x.phone_number = number
         x.message = msg 
+        if request.FILES.get("img"):
+            x.image = img
+        else:
+            x.image = x.image
         x.save()
         
         return redirect("showdata")

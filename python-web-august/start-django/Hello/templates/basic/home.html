@@ -1,11 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Snake Game</title>
 </head>
 <body>
-    <h1>My Home Page.....!</h1>
+    <canvas id="game-canvas" width="600" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById('game-canvas');
+const ctx = canvas.getContext('2d');
+
+const CELL_SIZE = 20;
+
+// Initialize game state
+let snake = [{ x: 100, y: 50 }, { x: 90, y: 50 }, { x: 80, y: 50 }];
+let direction = 'right';
+let food = { x: 0, y: 0 };
+
+function drawSnake() {
+  ctx.fillStyle = 'green';
+  for (let segment of snake) {
+    ctx.fillRect(segment.x, segment.y, CELL_SIZE, CELL_SIZE);
+  }
+}
+
+function drawFood() {
+  ctx.fillStyle = 'red';
+  ctx.fillRect(food.x, food.y, CELL_SIZE, CELL_SIZE);
+}
+
+function update() {
+  // Update snake's position based on direction
+  let newHead = Object.assign({}, snake[0]);
+  switch (direction) {
+    case 'up':
+      newHead.y -= CELL_SIZE;
+      break;
+    case 'down':
+      newHead.y += CELL_SIZE;
+      break;
+    case 'left':
+      newHead.x -= CELL_SIZE;
+      break;
+    case 'right':
+      newHead.x += CELL_SIZE;
+      break;
+  }
+
+  snake.unshift(newHead);
+
+  // Check for collision with food
+  if (newHead.x === food.x && newHead.y === food.y) {
+    // Generate a new food location
+    food.x = Math.floor(Math.random() * (canvas.width / CELL_SIZE)) * CELL_SIZE;
+    food.y = Math.floor(Math.random() * (canvas.height / CELL_SIZE)) * CELL_SIZE;
+  } else {
+    snake.pop();
+  }
+}
+
+function gameLoop() {
+  update();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawSnake();
+  drawFood();
+  // Add game over conditions here if needed
+  requestAnimationFrame(gameLoop);
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowUp' && direction !== 'down') {
+    direction = 'up';
+  } else if (event.key === 'ArrowDown' && direction !== 'up') {
+    direction = 'down';
+  } else if (event.key === 'ArrowLeft' && direction !== 'right') {
+    direction = 'left';
+  } else if (event.key === 'ArrowRight' && direction !== 'left') {
+    direction = 'right';
+  }
+});
+
+// Initialize food location
+food.x = Math.floor(Math.random() * (canvas.width / CELL_SIZE)) * CELL_SIZE;
+food.y = Math.floor(Math.random() * (canvas.height / CELL_SIZE)) * CELL_SIZE;
+
+gameLoop();
+
+    </script>
 </body>
 </html>
