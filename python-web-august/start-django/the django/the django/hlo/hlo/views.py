@@ -66,8 +66,10 @@ def contactus(request):
         number = request.POST.get("number")
         email = request.POST.get("email")
         msg = request.POST.get("msg")
+        imgs = request.FILES.get("img")
 
-        sav = ContactU(Name = name, phone_number = number, Email = email, message = msg)
+        # print(imgs, "xxxxxxxxxxxxxx")
+        sav = ContactU(Name = name, phone_number = number, Email = email, message = msg, image = imgs)
         sav.save()
         
         return redirect("showdata")

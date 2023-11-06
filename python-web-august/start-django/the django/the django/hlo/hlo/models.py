@@ -7,6 +7,7 @@ class ContactU(models.Model):
     phone_number = models.IntegerField()
     Email = models.CharField(max_length=50)
     message = models.TextField()
+    image = models.ImageField(upload_to="myimages", null=True, blank=True)
 
 class Userinfo(models.Model):
     UserName = models.CharField(max_length=50)

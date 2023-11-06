@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
         body {
             background-color: #444442;
             padding-top: 85px;
@@ -143,50 +143,57 @@
             font-style: normal;
         }
     </style>
-</head>
+    </head>
 
-<body>
-    <div class="container">
-        <div class="row">
-            <h1>contact us</h1>
-        </div>
-        <div class="row">
-            <h4 style="text-align:center">We'd love to hear from you!</h4>
-        </div>
-        <form action="contactus" method="post">
-            {% csrf_token %}
-            <div class="row input-container">
-                <div class="col-xs-12">
-                    <div class="styled-input wide">
-                        <input type="text" name="name" required />
-                        <label>Name</label>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="styled-input">
-                        <input type="email" name="email" required />
-                        <label>Email</label>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <div class="styled-input" style="float:right;">
-                        <input type="number" name="number" required />
-                        <label>Phone Number</label>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <div class="styled-input wide">
-                        <textarea name="msg" required></textarea>
-                        <label>Message</label>
-                    </div>
-                </div>
-                <div class="col-xs-12">
-                    <button class="btn-lrg submit-btn">Send Message</button>
-                </div>
+    <body>
+        <div class="container">
+            <div class="row">
+                <h1>contact us</h1>
             </div>
-        </form>
-    </div>
+            <div class="row">
+                <h4 style="text-align:center">We'd love to hear from you!</h4>
+            </div>
+            <form action="contactus" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row input-container">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="styled-input wide">
+                            <input type="text" name="name" required />
+                            <label>Name</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="styled-input wide">
+                            <input type="file" name="img" required />
+                            <label>Upload Image</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="styled-input">
+                            <input type="email" name="email" required />
+                            <label>Email</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="styled-input" style="float:right;">
+                            <input type="number" name="number" required />
+                            <label>Phone Number</label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="styled-input wide">
+                            <textarea name="msg" required></textarea>
+                            <label>Message</label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-12">
+                        <button class="btn-lrg submit-btn">Send Message</button>
+                    </div>
+                </div>
+            </form>
+        </div>
 
-</body>
+    </body>
 
 </html>
